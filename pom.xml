@@ -16,6 +16,8 @@
         <kotlin.code.style>official</kotlin.code.style>
         <junit.version>4.12</junit.version>
         <spark-core.version>2.8.0</spark-core.version>
+        <flyway.version>6.1.0</flyway.version>
+        <postgres.version>42.2.8</postgres.version>
     </properties>
 
     <dependencies>
@@ -27,7 +29,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>6.1.0</version>
+            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -45,6 +47,11 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
         </dependency>
     </dependencies>
 
@@ -73,6 +80,25 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <url>${RC_DB_URL}</url>
+                    <user>${RC_DB_USERNAME}</user>
+                    <password>${RC_DB_PASSWORD}</password>
+                    <schemas>RC</schemas>
+                    <defaultSchema>RC</defaultSchema>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgres.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
