@@ -17,7 +17,7 @@
         <junit.version>4.12</junit.version>
         <spark-core.version>2.8.0</spark-core.version>
         <flyway.version>6.1.0</flyway.version>
-        <postgres.version>42.2.8</postgres.version>
+        <postgres.version>42.4.1</postgres.version>
     </properties>
 
     <dependencies>
